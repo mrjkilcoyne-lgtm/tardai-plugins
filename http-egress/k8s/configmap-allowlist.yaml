@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tardai-tool-bus-policy
+  namespace: tardai
+data:
+  egress-allowlist: |
+    api.github.com
+    api.stripe.com
+    api.cal.com
+    api.vercel.com
+    api.cloudflare.com
+    api.civo.com
+    hooks.slack.com
+    api.anthropic.com
+    api.openai.com

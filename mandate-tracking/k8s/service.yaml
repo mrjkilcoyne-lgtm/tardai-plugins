@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tool-mandate-tracking
+  namespace: tardai
+spec:
+  type: ClusterIP
+  selector:
+    app: tool-mandate-tracking
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+      protocol: TCP

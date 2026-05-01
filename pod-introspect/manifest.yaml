@@ -1,0 +1,18 @@
+id: pod-introspect
+title: Read pod state, logs, events in tardai namespace
+description: Returns describe/logs/events/top for pods in the tardai namespace via k8s API. RBAC scoped to tardai only.
+schema_in:
+  action: describe|logs|events|top
+  pod: string
+  container: string (optional)
+  lines: int (optional)
+schema_out:
+  action: string
+  data: object|array|string
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 30
+estimated_cost: zero
+endpoint: http://tool-pod-introspect.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude

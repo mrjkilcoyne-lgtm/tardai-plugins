@@ -1,0 +1,21 @@
+id: time-sense
+title: Wall-clock and monotonic time, with optional delta
+description: Returns current UTC wall-clock, monotonic counter, plugin uptime, and optional delta vs a caller-supplied ISO reference.
+schema_in:
+  format: string (optional)
+  relative_to: ISO timestamp (optional)
+schema_out:
+  now_iso: string
+  now_epoch: float
+  now_human: string
+  monotonic: float
+  uptime_s: float
+  boot_wall: string
+  delta_s: float
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 600
+estimated_cost: zero
+endpoint: http://tool-time-sense.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude

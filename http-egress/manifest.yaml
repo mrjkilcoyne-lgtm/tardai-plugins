@@ -1,0 +1,22 @@
+id: http-egress
+title: Outbound HTTP to sovereign-allowlisted hosts
+description: Issues HTTP requests to hosts on the sovereign-controlled allowlist (ConfigMap tardai-tool-bus-policy). All non-allowlisted hosts return 403 with audit. Two-phase plan/invoke.
+schema_in:
+  method: GET|POST|PUT|PATCH|DELETE|HEAD
+  url: string
+  headers: object (optional)
+  body: string|object (optional)
+  timeout_ms: int (optional, default 10000)
+schema_out:
+  status: int
+  headers: object
+  body: string
+  latency_ms: int
+blast_radius: write-external
+data_sensitivity: none
+rate_limit_per_min: 60
+estimated_cost: low
+endpoint: http://tool-http-egress.tardai.svc.cluster.local:8000/invoke
+plan_endpoint: http://tool-http-egress.tardai.svc.cluster.local:8000/plan
+deprecated: false
+owner: claude

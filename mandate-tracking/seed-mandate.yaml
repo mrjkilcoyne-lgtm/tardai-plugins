@@ -1,0 +1,13 @@
+id: tier-1-plugin-rollout
+title: Tier 1 plugin rollout — http-egress, mempalace, pod-introspect, time, cost, mandates
+opened_at: "2026-05-01T00:00:00Z"
+deadline: "2026-05-02T00:00:00Z"
+status: open
+blockers:
+  - mempalace API surface undocumented (mempalace-read, mempalace-search return 502 until known)
+  - cost-sense Anthropic admin endpoint not wired
+  - cluster memory at 91% — adding 7 plugins may pressure node further
+owner: claude
+notes: |
+  Seed mandate for the mandate-tracking plugin. POST this via the artefact
+  surface to _meta/mandates/tier-1-plugin-rollout.yaml after deployment.

@@ -1,0 +1,16 @@
+id: mandate-tracking
+title: List sovereign's open / completed / blocked mandates
+description: Reads _meta/mandates/<id>.yaml from artefact surface. Filters by status. Read-only.
+schema_in:
+  status: open|completed|blocked|all
+schema_out:
+  mandates: array
+  count: int
+  by_status: object
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 60
+estimated_cost: zero
+endpoint: http://tool-mandate-tracking.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude

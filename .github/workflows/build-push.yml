@@ -21,6 +21,13 @@ jobs:
           - self-artefact-read
           - self-artefact-list
           - tool-bus-introspect
+          - http-egress
+          - mempalace-read
+          - mempalace-search
+          - pod-introspect
+          - time-sense
+          - cost-sense
+          - mandate-tracking
     steps:
       - uses: actions/checkout@v4
 

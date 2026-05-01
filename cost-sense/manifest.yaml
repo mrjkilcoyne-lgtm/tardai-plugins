@@ -1,0 +1,17 @@
+id: cost-sense
+title: Aggregate spend across Anthropic, Civo, Vercel, plus per-realiser invocation counts
+description: Pulls usage from each available source (honest unavailable for missing credentials). Bus audit log grouped by caller_session for per-realiser allocation.
+schema_in:
+  period: today|this-week|this-month
+  scope: all|<service-name>
+schema_out:
+  period: string
+  sources: array
+  summary: object
+blast_radius: read-only-external
+data_sensitivity: financial
+rate_limit_per_min: 30
+estimated_cost: low
+endpoint: http://tool-cost-sense.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude

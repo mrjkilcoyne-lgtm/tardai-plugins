@@ -1,0 +1,19 @@
+id: mempalace-read
+title: Read sovereign's MemPalace memories
+description: List/read memory entries from MemPalace. Filters by query, category, key. Read-only against substrates/mempalace:8095.
+schema_in:
+  query: string (optional)
+  category: string (optional)
+  key: string (optional)
+  limit: int (optional)
+schema_out:
+  memories: array
+  count: int
+  endpoint_used: string
+blast_radius: read-only-external
+data_sensitivity: none
+rate_limit_per_min: 60
+estimated_cost: zero
+endpoint: http://tool-mempalace-read.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude

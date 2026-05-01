@@ -1,0 +1,19 @@
+id: mempalace-search
+title: Semantic search over MemPalace
+description: Ranked search across sovereign's memories. Native semantic if available, substring + tag fallback otherwise.
+schema_in:
+  query: string
+  limit: int (optional)
+  tags: array (optional)
+schema_out:
+  results: array
+  count: int
+  method: string
+  endpoint_used: string
+blast_radius: read-only-external
+data_sensitivity: none
+rate_limit_per_min: 60
+estimated_cost: zero
+endpoint: http://tool-mempalace-search.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude
