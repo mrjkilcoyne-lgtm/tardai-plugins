@@ -1,0 +1,5 @@
+# Shared resource profile for the Go plugins.
+# Applied via `kubectl set resources` in the rollout script after image swap.
+# requests: 5Mi memory, 5m CPU
+# limits:   32Mi memory, 100m CPU
+# These match the brief; Go binaries should boot in <100ms with this room.

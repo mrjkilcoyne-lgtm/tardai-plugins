@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tool-cost-sense
+  namespace: tardai
+  labels:
+    app: tool-cost-sense
+    tardai.tool: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tool-cost-sense
+  template:
+    metadata:
+      labels:
+        app: tool-cost-sense
+        tardai.tool: "true"
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: app
+          image: ghcr.io/mrjkilcoyne-lgtm/tardai-plugins-cost-sense:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: BEARER
+              valueFrom:
+                secretKeyRef:
+                  name: tardai-auth
+                  key: bearer
+            - name: BUS_BASE
+              value: http://tardai-tool-bus.tardai.svc.cluster.local:8000
+            - name: ARTEFACT_BASE
+              value: http://tardai-artefacts.tardai.svc.cluster.local:8000
+            - name: SELF_BASE
+              value: http://tool-cost-sense.tardai.svc.cluster.local:8000
+            - name: ANTHROPIC_ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tool-cost-sense-creds
+                  key: anthropic_admin_token
+                  optional: true
+            - name: CIVO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tool-cost-sense-creds
+                  key: civo_api_key
+                  optional: true
+            - name: VERCEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tool-cost-sense-creds
+                  key: vercel_token
+                  optional: true
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 5m
+              memory: 5Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
+      imagePullSecrets:
+        - name: ghcr-pull

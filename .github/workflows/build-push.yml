@@ -50,10 +50,13 @@ jobs:
             type=raw,value=latest
             type=sha,prefix=sha-
 
-      - name: Build and push
+      - name: Build and push (Go single-binary, --build-arg PLUGIN)
         uses: docker/build-push-action@v6
         with:
-          context: ./${{ matrix.plugin }}
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            PLUGIN=${{ matrix.plugin }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
