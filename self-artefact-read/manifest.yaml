@@ -1,0 +1,18 @@
+id: self-artefact-read
+title: Read TARDAI's own artefact surface
+description: GET a file from the artefact write surface. Returns body as utf-8 text (or base64 if encoding=base64). Sovereign's first eye on her own writing.
+schema_in:
+  path: string
+  encoding: utf8|base64 (optional, default utf8)
+schema_out:
+  body: string
+  bytes: int
+  content_type: string
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 120
+estimated_cost: zero
+endpoint: http://tool-self-artefact-read.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude-overnight-agent
+required_confirm_tier: off

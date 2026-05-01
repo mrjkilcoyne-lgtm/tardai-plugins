@@ -1,0 +1,16 @@
+id: self-artefact-list
+title: List TARDAI's own artefact surface
+description: LIST files under a prefix on the artefact surface. Returns array of paths.
+schema_in:
+  prefix: string (optional, default empty = root)
+schema_out:
+  paths: string[]
+  count: int
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 120
+estimated_cost: zero
+endpoint: http://tool-self-artefact-list.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude-overnight-agent
+required_confirm_tier: off

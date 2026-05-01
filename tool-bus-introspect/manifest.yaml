@@ -1,0 +1,17 @@
+id: tool-bus-introspect
+title: Introspect the Tool Bus itself
+description: Returns the Bus's manifest enriched with counts and a breakdown by blast_radius. Recursion is the feature.
+schema_in: {}
+schema_out:
+  tool_count: int
+  tools: array
+  by_blast_radius: object
+  disabled_count: int
+blast_radius: read-only-cluster
+data_sensitivity: none
+rate_limit_per_min: 120
+estimated_cost: zero
+endpoint: http://tool-tool-bus-introspect.tardai.svc.cluster.local:8000/invoke
+deprecated: false
+owner: claude-overnight-agent
+required_confirm_tier: off
